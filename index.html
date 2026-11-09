@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mietzeuge — Wohnungsübergabe fälschungssicher dokumentieren</title>
+  <meta name="description" content="Mietzeuge dokumentiert Einzug, Mängel und Auszug Raum für Raum — mit Foto-Fingerabdruck, Unterschrift am Handy und Prüfcode. Damit deine Kaution zurückkommt. Für Deutschland, Österreich und die Schweiz." />
+  <meta name="theme-color" content="#061416" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+  <link rel="canonical" href="https://mietzeuge.dexware.app/" />
+  <meta property="og:title" content="Mietzeuge — dein Zeuge bei der Wohnungsübergabe" />
+  <meta property="og:description" content="Einzug, Mängel, Auszug: Raum für Raum dokumentiert, mit Fingerabdruck und Prüfcode. Damit die Kaution zurückkommt." />
+  <meta property="og:image" content="https://mietzeuge.dexware.app/img/icon-512.png" />
+  <meta property="og:url" content="https://mietzeuge.dexware.app/" />
+  <link rel="stylesheet" href="site.css" />
+  <script>(function(){try{var t=localStorage.getItem('mz-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Mietzeuge","operatingSystem":"Android","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"Dexware"}}</script>
+  <style>
+    .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 32px; align-items: center; padding: 28px 0 40px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-soft); color: var(--primary); font-weight: 800; font-size: 13px; border-radius: 100px; padding: 6px 12px; margin-bottom: 14px; }
+    .hero h1 em { font-style: normal; color: var(--primary); }
+    .lead { font-size: 18px; color: var(--muted); margin: 14px 0 22px; max-width: 34em; }
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .small { font-size: 13px; color: var(--muted); margin-top: 10px; }
+    .art { position: relative; display: flex; justify-content: center; }
+    .art .glow { position: absolute; inset: 8% 10%; border-radius: 50%; background: radial-gradient(closest-side, var(--primary-soft), transparent); filter: blur(6px); }
+    .door { position: relative; width: min(320px, 78vw); height: auto; }
+    .door .outline { stroke-dasharray: 820; stroke-dashoffset: 820; animation: draw 1.2s 0.15s cubic-bezier(.6,.05,.3,1) forwards; }
+    .door .fill { opacity: 0; animation: fade 0.5s 0.9s forwards; }
+    .door .sealg { transform-origin: 150px 140px; transform: scale(1.9) rotate(-8deg); opacity: 0; animation: stamp 0.55s 1.45s cubic-bezier(.2,.9,.3,1.2) forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes fade { to { opacity: 1; } }
+    @keyframes stamp { 60% { transform: scale(0.92) rotate(-8deg); opacity: 1; } to { transform: scale(1) rotate(-8deg); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .door .outline { stroke-dashoffset: 0; } .door .fill, .door .sealg { opacity: 1; transform: rotate(-8deg); } }
+
+    section.band { padding: 44px 0; }
+    section.band h2 { font-size: clamp(22px, 4.6vw, 32px); font-weight: 900; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 10px; }
+    .sub { color: var(--muted); font-size: 16.5px; max-width: 40em; margin-bottom: 24px; }
+    .pain { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 22px; box-shadow: var(--shadow); }
+    .pain q { display: block; font-size: 19px; font-weight: 800; quotes: '„' '“'; margin-bottom: 6px; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: s; }
+    .step { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px; position: relative; box-shadow: var(--shadow); }
+    .step::before { counter-increment: s; content: counter(s); display: inline-flex; width: 32px; height: 32px; border-radius: 50%; align-items: center; justify-content: center; background: var(--primary); color: var(--primary-ink); font-weight: 900; margin-bottom: 10px; }
+    .step h3 { font-size: 16.5px; font-weight: 900; margin-bottom: 4px; }
+    .step p { font-size: 14.5px; color: var(--muted); }
+
+    .feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: var(--shadow); }
+    .card .ic { font-size: 24px; margin-bottom: 6px; }
+    .card h3 { font-size: 16px; font-weight: 900; margin-bottom: 4px; }
+    .card p { font-size: 14.5px; color: var(--muted); }
+
+    .seal-box { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; background: var(--surface); border: 1.5px solid var(--seal-deep); border-radius: 22px; padding: 22px; box-shadow: var(--shadow); }
+    .seal-box ul { margin: 8px 0 0 20px; color: var(--muted); font-size: 15px; }
+    .seal-box li { margin-bottom: 4px; }
+    .code-demo { font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 900; letter-spacing: 1.5px; background: var(--seal); color: var(--seal-ink); border-radius: 10px; padding: 6px 10px; display: inline-block; }
+
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ba { border-radius: 18px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow); }
+    .ba .ph { height: 150px; display: flex; align-items: flex-end; padding: 10px; font-weight: 800; font-size: 13px; color: #fff; background: linear-gradient(160deg, #3a5f61, #163739); position: relative; }
+    .ba .ph.after { background: linear-gradient(160deg, #4b6e70, #1d4446); }
+    .ba .ph .scratch { position: absolute; left: 30%; top: 38%; width: 40%; height: 3px; background: #f6c453; transform: rotate(-12deg); border-radius: 2px; box-shadow: 0 0 0 2px rgba(0,0,0,.15); }
+    .ba .body { padding: 12px 14px; font-size: 14.5px; }
+    .pill { display: inline-block; border-radius: 100px; padding: 4px 10px; font-weight: 800; font-size: 12.5px; }
+    .pill.old { background: var(--seal); color: var(--seal-ink); }
+    .pill.new { background: rgba(194, 65, 12, 0.14); color: var(--red); }
+
+    .prices { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .price { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 22px; box-shadow: var(--shadow); }
+    .price.hot { border: 2px solid var(--seal-deep); }
+    .price .amt { font-size: 34px; font-weight: 900; letter-spacing: -0.5px; }
+    .price .per { color: var(--muted); font-weight: 700; font-size: 14px; }
+    .price ul { list-style: none; margin-top: 12px; }
+    .price li { padding: 6px 0 6px 26px; position: relative; font-size: 15px; border-top: 1px solid var(--border); }
+    .price li::before { content: '✓'; position: absolute; left: 2px; color: var(--primary); font-weight: 900; }
+
+    .lands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .land h3 { font-size: 16px; font-weight: 900; margin-bottom: 4px; }
+    .land p { font-size: 14.5px; color: var(--muted); }
+
+    details { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; }
+    summary { font-weight: 800; cursor: pointer; font-size: 16px; }
+    details p { color: var(--muted); margin-top: 8px; font-size: 15px; }
+
+    .final { text-align: center; background: linear-gradient(160deg, #0b2a2c, #061416); color: #ecfdf9; border-radius: 26px; padding: 36px 20px; }
+    .final h2 { color: #ecfdf9; }
+    .final p { color: #8fb5b0; margin: 8px auto 18px; max-width: 32em; }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; gap: 10px; padding-top: 8px; }
+      .art { order: -1; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .feat, .lands { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .steps, .feat, .lands, .prices, .compare { grid-template-columns: 1fr; }
+      .seal-box { grid-template-columns: 1fr; }
+      .lead { font-size: 16.5px; }
+      .cta .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><img src="/img/icon-192.png" alt="" width="36" height="36" />Miet<b>zeuge</b></a>
+    <nav>
+      <a class="hide-s" href="#so-gehts">So geht’s</a>
+      <a class="hide-s" href="#preis">Preis</a>
+      <a href="/verify/">Prüfcode prüfen</a>
+      <button class="theme-btn" type="button" id="themeBtn" aria-label="Hell/Dunkel umschalten">◐</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">🔑 Für Mieterinnen &amp; Mieter · DE · AT · CH</span>
+        <h1>Dein Zeuge bei der <em>Wohnungsübergabe.</em></h1>
+        <p class="lead">Mietzeuge dokumentiert Einzug, Mängel und Auszug Raum für Raum — jedes Foto mit Fingerabdruck, beide unterschreiben am Handy, das Protokoll bekommt einen Prüfcode. Beim Auszug zeigt der Vorher/Nachher-Vergleich, was <strong>schon beim Einzug</strong> da war. Damit deine Kaution zurückkommt.</p>
+        <div class="cta">
+          <span class="btn primary" aria-disabled="true">Demnächst bei Google Play</span>
+          <a class="btn ghost" href="#so-gehts">So funktioniert’s</a>
+        </div>
+        <p class="small">1 Wohnung gratis · kein Abo · funktioniert auch ohne Netz</p>
+      </div>
+      <div class="art" aria-hidden="true">
+        <div class="glow"></div>
+        <svg class="door" viewBox="0 0 200 190" role="img">
+          <g class="fill">
+            <rect x="58" y="36" width="84" height="140" rx="10" fill="#064E4A" />
+            <rect x="70" y="52" width="60" height="44" rx="6" fill="#0F766E" />
+            <rect x="70" y="108" width="60" height="52" rx="6" fill="#0F766E" />
+            <circle cx="124" cy="102" r="5" fill="#F6C453" />
+            <path d="M124 102 v10" stroke="#F6C453" stroke-width="4" stroke-linecap="round" />
+          </g>
+          <path class="outline" d="M40 176 V40 Q40 18 62 18 H138 Q160 18 160 40 V176 M58 176 V46 Q58 36 68 36 H132 Q142 36 142 46 V176 M20 176 H180" fill="none" stroke="#2DD4BF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+          <g class="sealg">
+            <circle cx="150" cy="140" r="29" fill="#F6C453" stroke="#061416" stroke-width="3" />
+            <circle cx="150" cy="140" r="23" fill="none" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="4 3" />
+            <path d="M137 141 L146 150 L164 131" stroke="#061416" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="pain">
+        <q>Der Kratzer im Parkett war doch schon da!</q>
+        <p style="color:var(--muted)">Beim Auszug steht Aussage gegen Aussage — und die Kaution liegt beim Vermieter. Wer beim Einzug nichts belegt hat, hat es schwer. Ein paar Handyfotos im Album helfen wenig: Wann aufgenommen? Welcher Raum? Nachträglich bearbeitet? Mietzeuge macht daraus ein ordentliches, unterschriebenes und versiegeltes Protokoll.</p>
+      </div>
+    </section>
+
+    <section class="band" id="so-gehts">
+      <h2>So geht’s — in vier Schritten</h2>
+      <p class="sub">Die App führt dich. Du musst nichts vorbereiten.</p>
+      <div class="steps">
+        <div class="step"><h3>Wohnung anlegen</h3><p>Adresse, Vermieter, Kaution, Räume. Den Mietvertrag fotografierst du gleich dazu.</p></div>
+        <div class="step"><h3>Raum für Raum prüfen</h3><p>Wände, Boden, Fenster, Türen, Sanitär … je Punkt: in Ordnung oder Mangel — mit Foto. Dazu Zähler und Schlüssel.</p></div>
+        <div class="step"><h3>Beide unterschreiben</h3><p>Du und der Vermieter (oder die Hausverwaltung) unterschreiben am Handy. Das PDF ist sofort fertig.</p></div>
+        <div class="step"><h3>Versiegeln</h3><p>Das Protokoll bekommt einen Fingerabdruck und — mit Wohnungs-Paket — einen Prüfcode mit Server-Zeitstempel.</p></div>
+      </div>
+    </section>
+
+    <section class="band">
+      <h2>Fälschungssicher dokumentiert — ehrlich erklärt</h2>
+      <p class="sub">Was der Prüfcode kann, und was nicht.</p>
+      <div class="seal-box">
+        <svg width="96" height="96" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#F6C453" /><circle cx="30" cy="30" r="23" fill="none" stroke="#B7791F" stroke-width="2.5" stroke-dasharray="4 3" /><path d="M17 31 L26 40 L44 21" stroke="#061416" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" /></svg>
+        <div>
+          <p>Jedes Foto bekommt beim Aufnehmen seinen <strong>SHA-256-Fingerabdruck</strong>. Beim Abschließen entsteht ein Fingerabdruck über das ganze Protokoll — Befunde, Notizen, Zählerstände, Schlüssel, Unterschriften, Fotos. Unser Server stempelt den Eingang und vergibt einen Prüfcode wie <span class="code-demo">7KQ4-2XWD-M9PA</span>.</p>
+          <ul>
+            <li>Jede spätere Änderung an Protokoll oder Foto fällt auf.</li>
+            <li>Vermieter, Schlichtungsstelle oder Gericht prüfen selbst — per QR-Code im PDF oder auf <a href="/verify/">mietzeuge.dexware.app/verify</a>.</li>
+            <li>Die Prüfseite zeigt nur Fingerabdrücke und Zeit — keine Fotos, keine Namen, keine Adresse.</li>
+            <li>Kein qualifizierter eIDAS-Zeitstempel und keine Garantie fürs Gericht — aber ein starker, nachvollziehbarer Beleg.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <h2>Beim Auszug: „war schon beim Einzug“</h2>
+      <p class="sub">Mietzeuge vergleicht Auszug und Einzug Punkt für Punkt — mit Vorher/Nachher-Schieber und Vergleichsbericht als PDF.</p>
+      <div class="compare">
+        <div class="ba"><div class="ph"><span class="scratch"></span>Einzug · 01.03.2023</div><div class="body"><b>Wohnzimmer · Boden</b><br /><span class="pill old">war schon beim Einzug</span></div></div>
+        <div class="ba"><div class="ph after">Auszug · 31.08.2026</div><div class="body"><b>Küche · Arbeitsplatte</b><br /><span class="pill new">neu seit Einzug</span></div></div>
+      </div>
+    </section>
+
+    <section class="band">
+      <h2>Alles, was rund um die Kaution zählt</h2>
+      <div class="feat">
+        <div class="card"><div class="ic">📸</div><h3>Geführte Prüfliste</h3><p>Für jeden Raum die passenden Prüfpunkte, große Knöpfe, „übrige in Ordnung“ mit einem Tipp.</p></div>
+        <div class="card"><div class="ic">🔢</div><h3>Zähler &amp; Schlüssel</h3><p>Strom, Gas, Wasser, Heizung mit Foto und Nummer. Schlüssel gezählt und quittiert.</p></div>
+        <div class="card"><div class="ic">✍️</div><h3>Unterschrift am Handy</h3><p>Beide Seiten unterschreiben direkt in der App — das Übergabeprotokoll als PDF.</p></div>
+        <div class="card"><div class="ic">🛠️</div><h3>Mängel in der Mietzeit</h3><p>Sofort mit Foto festhalten, Mängelanzeige mit Frist schreiben, Erinnerung bekommen.</p></div>
+        <div class="card"><div class="ic">💶</div><h3>Kautions-Tracker</h3><p>Zeitplan nach dem Auszug je Land, Erinnerung zum Nachfragen, Brief zum Zurückfordern.</p></div>
+        <div class="card"><div class="ic">☁️</div><h3>Offline &amp; gesichert</h3><p>Funktioniert im Keller ohne Netz. Mit Konto in der Cloud gesichert und mit Partner/WG geteilt.</p></div>
+      </div>
+    </section>
+
+    <section class="band">
+      <h2>Deutschland, Österreich, Schweiz</h2>
+      <p class="sub">Kautions-Zeitplan und Brief-Vorlagen passen zum Land der Wohnung. Richtwerte, keine Rechtsberatung.</p>
+      <div class="lands">
+        <div class="card land"><h3>🇩🇪 Deutschland</h3><p>§ 551 BGB: höchstens drei Nettokaltmieten; Rückzahlung nach angemessener Prüffrist, meist 3 bis 6 Monate.</p></div>
+        <div class="card land"><h3>🇦🇹 Österreich</h3><p>§ 16b MRG: Kaution fruchtbringend anlegen, nach Ende des Mietverhältnisses unverzüglich samt Zinsen zurück.</p></div>
+        <div class="card land"><h3>🇨🇭 Schweiz</h3><p>Art. 257e OR: Sperrkonto auf deinen Namen; ohne rechtliche Geltendmachung binnen eines Jahres Auszahlung über die Bank.</p></div>
+      </div>
+    </section>
+
+    <section class="band" id="preis">
+      <h2>Fair: gratis starten, einmal zahlen</h2>
+      <p class="sub">Kein Abo. Das Wohnungs-Paket kaufst du nur, wenn du es brauchst — einmal je Wohnung.</p>
+      <div class="prices">
+        <div class="price">
+          <div class="per">Gratis</div>
+          <div class="amt">0 €</div>
+          <ul>
+            <li>1 Wohnung mit allen Protokollen</li>
+            <li>Fotos mit Fingerabdruck</li>
+            <li>Unterschriften &amp; PDF-Protokoll</li>
+            <li>Mängel, Kautions-Zeitplan, Brief-Vorlagen</li>
+            <li>Konto &amp; Cloud-Sicherung, Teilen</li>
+          </ul>
+        </div>
+        <div class="price hot">
+          <div class="per">Wohnungs-Paket · einmalig je Wohnung</div>
+          <div class="amt">9,99 €</div>
+          <ul>
+            <li>Prüfcode mit Server-Eingangsstempel</li>
+            <li>Prüf-Link + QR-Code im PDF</li>
+            <li>Vergleichsbericht Einzug ↔ Auszug</li>
+            <li>KI-Briefe &amp; KI-Mangelbeschreibung</li>
+            <li>Weitere Wohnungen (alte + neue beim Umzug)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <h2>Häufige Fragen</h2>
+      <details><summary>Ist das „gerichtsfest“?</summary><p>Das verspricht seriöserweise niemand. Mietzeuge sorgt dafür, dass dein Protokoll vollständig, unterschrieben und nachweislich unverändert ist — der Prüfcode belegt, dass es spätestens zum angezeigten Zeitpunkt so existierte. Wie ein Gericht oder eine Schlichtungsstelle das würdigt, entscheidet im Einzelfall das Gericht. Ein qualifizierter eIDAS-Zeitstempel ist für später geplant.</p></details>
+      <details><summary>Muss der Vermieter die App haben?</summary><p>Nein. Er unterschreibt auf deinem Handy und bekommt das PDF per Mail oder Messenger. Prüfen kann er im Browser.</p></details>
+      <details><summary>Was, wenn der Vermieter nicht unterschreibt?</summary><p>Dann unterschreibst du allein oder mit einer Zeugin bzw. einem Zeugen. Fotos mit Fingerabdruck und Prüfcode bleiben ein Beleg.</p></details>
+      <details><summary>Geht das ohne Internet?</summary><p>Ja. Alles funktioniert offline; Sicherung und Prüfcode folgen, sobald wieder Netz da ist.</p></details>
+      <details><summary>Wer sieht meine Fotos?</summary><p>Nur du und die Personen, die du in deine Mietakte einlädst. Die Prüfseite zeigt ausschließlich Fingerabdrücke und Zeit. Details in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p></details>
+      <details><summary>Ist das Rechtsberatung?</summary><p>Nein. Mietzeuge ist eine Dokumentationshilfe. Bei Streit helfen Mieterverein, Mietervereinigung, Arbeiterkammer, Schlichtungsstelle oder eine Anwältin bzw. ein Anwalt.</p></details>
+    </section>
+
+    <section class="band">
+      <div class="final">
+        <h2>Vor der Übergabe installieren — nicht danach.</h2>
+        <p>Der beste Zeitpunkt ist der Einzug. Der zweitbeste: heute, für alle Mängel, die dir schon aufgefallen sind.</p>
+        <span class="btn seal" aria-disabled="true">Demnächst bei Google Play</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <nav><a href="/verify/">Prüfcode prüfen</a><a href="/impressum.html">Impressum</a><a href="/datenschutz.html">Datenschutz</a><a href="/agb.html">AGB</a><a href="/konto-loeschung.html">Konto löschen</a></nav>
+    <div>Mietzeuge · ein Produkt von Dexware · Dokumentationshilfe, keine Rechtsberatung.</div>
+  </footer>
+</div>
+<script>(function(){var b=document.getElementById('themeBtn');if(!b)return;b.addEventListener('click',function(){var r=document.documentElement;var cur=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');var n=cur==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('mz-theme',n);}catch(e){}});})();</script>
+</body>
+</html>
