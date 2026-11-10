@@ -76,8 +76,8 @@
   function check(code){
     code=norm(code);
     $('photos').hidden=true;$('hashSec').hidden=true;seal=null;
+    if(/^BSPL/.test(code)){show('<h2><span class="badge">i</span>Beispiel-Code</h2><p>Dieser Code stammt aus der Beispielwohnung der App und ist kein echtes Siegel.</p>','bad');return;}
     if(!/^[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(code)){
-      if(/^BSPL/.test(code)){show('<h2><span class="badge">i</span>Beispiel-Code</h2><p>Dieser Code stammt aus der Beispielwohnung der App und ist kein echtes Siegel.</p>','bad');return;}
       show('<h2><span class="badge">!</span>Code unvollständig</h2><p>Ein Prüfcode hat 12 Zeichen, z. B. 7KQ4-2XWD-M9PA.</p>','bad');return;
     }
     if(URL_.indexOf('http')!==0){show('<h2><span class="badge">…</span>Prüfdienst wird eingerichtet</h2><p>Bitte später erneut versuchen.</p>','bad');return;}
@@ -116,7 +116,7 @@
     $('hashRes').innerHTML=h.length!==64?'<span class="n">Bitte alle 64 Zeichen eingeben.</span>':h===seal.hash?'<span class="y">✓ Stimmt überein — das PDF gehört zu diesem Siegel.</span>':'<span class="n">✕ Stimmt nicht überein — das PDF gehört nicht zu diesem Siegel oder wurde verändert.</span>';
   });
   var c=(location.search.match(/[?&]c=([^&]+)/)||[])[1];
-  if(c){c=decodeURIComponent(c);$('code').value=norm(c);check(c);}
+  if(c){try{c=decodeURIComponent(c);}catch(e){}$('code').value=norm(c);check(c);}
 })();
 </script>
 </body>
